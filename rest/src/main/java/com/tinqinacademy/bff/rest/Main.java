@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @ComponentScan(basePackages = "com.tinqinacademy.bff")
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.tinqinacademy.bff.domain")
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
