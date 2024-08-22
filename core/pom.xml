@@ -27,6 +27,13 @@
             <version>${revision}</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.tinqinacademy.bff</groupId>
+            <artifactId>api</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 

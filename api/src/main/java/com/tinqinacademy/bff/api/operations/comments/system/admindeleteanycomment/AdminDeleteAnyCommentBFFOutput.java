@@ -1,0 +1,13 @@
+package com.tinqinacademy.bff.api.operations.comments.system.admindeleteanycomment;
+
+import com.tinqinacademy.comments.api.base.OperationOutput;
+import lombok.*;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
+public class AdminDeleteAnyCommentBFFOutput implements OperationOutput {
+    //no response
+}
