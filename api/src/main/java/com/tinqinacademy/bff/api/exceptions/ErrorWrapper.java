@@ -1,7 +1,5 @@
 package com.tinqinacademy.bff.api.exceptions;
 
-import com.tinqinacademy.hotel.api.models.exceptions.ErrorResponse;
-import com.tinqinacademy.hotel.api.models.exceptions.Errors;
 import lombok.*;
 
 import java.time.LocalDate;

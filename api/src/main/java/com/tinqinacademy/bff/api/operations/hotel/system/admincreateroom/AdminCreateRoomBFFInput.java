@@ -1,7 +1,7 @@
 package com.tinqinacademy.bff.api.operations.hotel.system.admincreateroom;
 
 
-import com.tinqinacademy.hotel.api.models.base.OperationInput;
+import com.tinqinacademy.bff.api.base.OperationInput;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

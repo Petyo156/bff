@@ -1,11 +1,11 @@
 package com.tinqinacademy.bff.core.processors.comments.hotel;
 
+import com.tinqinacademy.bff.api.exceptions.Errors;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
-import com.tinqinacademy.comments.api.exceptions.Errors;
 import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomInput;
 import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomOperation;
 import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomOutput;

@@ -1,6 +1,5 @@
 package com.tinqinacademy.bff.api.exceptions;
 
-import com.tinqinacademy.hotel.api.models.exceptions.Errors;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 

@@ -1,29 +1,20 @@
 package com.tinqinacademy.bff.core.processors.comments.service;
 
+import com.tinqinacademy.bff.api.exceptions.Errors;
 import com.tinqinacademy.bff.api.operations.comments.system.admindeleteanycomment.AdminDeleteAnyCommentBFFInput;
 import com.tinqinacademy.bff.api.operations.comments.system.admindeleteanycomment.AdminDeleteAnyCommentBFFOperation;
 import com.tinqinacademy.bff.api.operations.comments.system.admindeleteanycomment.AdminDeleteAnyCommentBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
-import com.tinqinacademy.comments.api.exceptions.Errors;
-import com.tinqinacademy.comments.api.operations.system.admindeleteanycomment.AdminDeleteAnyCommentInput;
-import com.tinqinacademy.comments.api.operations.system.admindeleteanycomment.AdminDeleteAnyCommentOperation;
-import com.tinqinacademy.comments.api.operations.system.admindeleteanycomment.AdminDeleteAnyCommentOutput;
 import io.vavr.control.Either;
-import io.vavr.control.Try;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.UUID;
 
 import static io.vavr.API.$;
 import static io.vavr.API.Match;
-import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
 @Service

@@ -1,13 +1,9 @@
 package com.tinqinacademy.bff.core.processors;
 
+import com.tinqinacademy.bff.api.base.OperationInput;
+import com.tinqinacademy.bff.api.exceptions.ErrorResponse;
+import com.tinqinacademy.bff.api.exceptions.Errors;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
-import com.tinqinacademy.hotel.api.models.base.OperationInput;
-import com.tinqinacademy.hotel.api.models.exceptions.ErrorResponse;
-import com.tinqinacademy.hotel.api.models.exceptions.Errors;
-import com.tinqinacademy.hotel.api.models.operations.hotel.bookroom.BookSpecifiedRoomInput;
-import com.tinqinacademy.hotel.api.models.operations.system.admincreateroom.AdminCreateRoomInput;
-import com.tinqinacademy.hotel.api.models.operations.system.registervisitor.RegisterVisitorInput;
-import com.tinqinacademy.hotel.api.models.operations.system.registervisitor.RegisterVisitorsDataInput;
 import io.vavr.control.Either;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;

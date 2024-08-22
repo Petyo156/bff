@@ -1,7 +1,7 @@
 package com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tinqinacademy.hotel.api.models.base.OperationInput;
+import com.tinqinacademy.bff.api.base.OperationInput;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;

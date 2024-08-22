@@ -1,8 +1,7 @@
 package com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom;
 
-import com.tinqinacademy.hotel.api.models.base.OperationProcessor;
-import com.tinqinacademy.hotel.api.models.operations.system.adminupdateinfoforroom.AdminUpdateInfoForRoomInput;
-import com.tinqinacademy.hotel.api.models.operations.system.adminupdateinfoforroom.AdminUpdateInfoForRoomOutput;
+
+import com.tinqinacademy.bff.api.base.OperationProcessor;
 
 public interface AdminUpdateInfoForRoomBFFOperation extends OperationProcessor<AdminUpdateInfoForRoomBFFInput, AdminUpdateInfoForRoomBFFOutput> {
 }

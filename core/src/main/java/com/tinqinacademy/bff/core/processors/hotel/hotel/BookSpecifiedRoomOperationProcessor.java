@@ -1,11 +1,11 @@
 package com.tinqinacademy.bff.core.processors.hotel.hotel;
 
+import com.tinqinacademy.bff.api.exceptions.Errors;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
-import com.tinqinacademy.hotel.api.models.exceptions.Errors;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.validation.Validator;

@@ -1,7 +1,6 @@
 package com.tinqinacademy.bff.api.operations.hotel.system.registervisitor;
 
-import com.tinqinacademy.hotel.api.models.base.OperationInput;
-import com.tinqinacademy.hotel.api.models.operations.system.registervisitor.RegisterVisitorsDataInput;
+import com.tinqinacademy.bff.api.base.OperationInput;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -25,5 +24,5 @@ public class RegisterVisitorBFFInput implements OperationInput {
     @FutureOrPresent
     private LocalDate endDate;
 
-    private List<RegisterVisitorsDataInput> registerVisitorsDataInputList;
+    private List<RegisterVisitorsBFFDataInput> registerVisitorsDataInputList;
 }

@@ -1,8 +1,6 @@
 package com.tinqinacademy.bff.api.operations.comments.system.admineditanycomment;
 
-import com.tinqinacademy.comments.api.base.OperationProcessor;
-import com.tinqinacademy.comments.api.operations.system.admineditanycomment.AdminEditAnyCommentInput;
-import com.tinqinacademy.comments.api.operations.system.admineditanycomment.AdminEditAnyCommentOutput;
+import com.tinqinacademy.bff.api.base.OperationProcessor;
 
 public interface AdminEditAnyCommentBFFOperation extends OperationProcessor<AdminEditAnyCommentBFFInput, AdminEditAnyCommentBFFOutput> {
 }

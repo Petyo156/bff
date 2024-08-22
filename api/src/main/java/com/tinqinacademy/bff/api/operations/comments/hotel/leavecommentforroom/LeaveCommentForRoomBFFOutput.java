@@ -1,6 +1,6 @@
 package com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom;
 
-import com.tinqinacademy.comments.api.base.OperationOutput;
+import com.tinqinacademy.bff.api.base.OperationOutput;
 import lombok.*;
 
 @NoArgsConstructor

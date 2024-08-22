@@ -1,7 +1,7 @@
 package com.tinqinacademy.bff.core.errorhandling;
 
-import com.tinqinacademy.hotel.api.models.exceptions.ErrorResponse;
-import com.tinqinacademy.hotel.api.models.exceptions.ErrorWrapper;
+import com.tinqinacademy.bff.api.exceptions.ErrorResponse;
+import com.tinqinacademy.bff.api.exceptions.ErrorWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 

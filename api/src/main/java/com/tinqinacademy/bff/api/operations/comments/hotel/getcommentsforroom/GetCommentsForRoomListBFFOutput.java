@@ -1,7 +1,6 @@
 package com.tinqinacademy.bff.api.operations.comments.hotel.getcommentsforroom;
 
-import com.tinqinacademy.comments.api.base.OperationOutput;
-import com.tinqinacademy.comments.api.operations.hotel.getcommentsforroom.GetCommentsForRoomOutput;
+import com.tinqinacademy.bff.api.base.OperationOutput;
 import lombok.*;
 
 import java.util.List;
@@ -13,5 +12,5 @@ import java.util.List;
 @Builder
 @ToString
 public class GetCommentsForRoomListBFFOutput implements OperationOutput {
-    private List<GetCommentsForRoomOutput> list;
+    private List<GetCommentsForRoomBFFOutput> list;
 }

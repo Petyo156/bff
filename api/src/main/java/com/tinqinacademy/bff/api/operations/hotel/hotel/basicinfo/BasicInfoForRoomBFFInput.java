@@ -1,6 +1,6 @@
 package com.tinqinacademy.bff.api.operations.hotel.hotel.basicinfo;
 
-import com.tinqinacademy.hotel.api.models.base.OperationInput;
+import com.tinqinacademy.bff.api.base.OperationInput;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 

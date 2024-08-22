@@ -1,11 +1,11 @@
 package com.tinqinacademy.bff.core.processors.hotel.system;
 
+import com.tinqinacademy.bff.api.exceptions.Errors;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminreportvisitor.AdminReportVisitorBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminreportvisitor.AdminReportVisitorBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminreportvisitor.AdminReportVisitorBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
-import com.tinqinacademy.hotel.api.models.exceptions.Errors;
 import com.tinqinacademy.hotel.api.models.operations.system.adminreportvisitor.AdminReportVisitorInput;
 import com.tinqinacademy.hotel.api.models.operations.system.adminreportvisitor.AdminReportVisitorOperation;
 import com.tinqinacademy.hotel.api.models.operations.system.adminreportvisitor.AdminReportVisitorOutput;
@@ -28,6 +28,7 @@ import static io.vavr.Predicates.instanceOf;
 @Service
 public class AdminReportVisitorOperationProcessor extends BaseOperationProcessor implements AdminReportVisitorBFFOperation {
 
+    @Autowired
     public AdminReportVisitorOperationProcessor(ConversionService conversionService, ErrorMapper errorMapper, Validator validator) {
         super(conversionService, errorMapper, validator);
     }

@@ -1,7 +1,7 @@
 package com.tinqinacademy.bff.api.operations.comments.system.admindeleteanycomment;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tinqinacademy.comments.api.base.OperationInput;
+import com.tinqinacademy.bff.api.base.OperationInput;
 import lombok.*;
 
 @NoArgsConstructor

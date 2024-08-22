@@ -1,8 +1,6 @@
 package com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom;
 
-import com.tinqinacademy.comments.api.base.OperationProcessor;
-import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomInput;
-import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomOutput;
+import com.tinqinacademy.bff.api.base.OperationProcessor;
 
 public interface LeaveCommentForRoomBFFOperation extends OperationProcessor<LeaveCommentForRoomBFFInput, LeaveCommentForRoomBFFOutput> {
 }
