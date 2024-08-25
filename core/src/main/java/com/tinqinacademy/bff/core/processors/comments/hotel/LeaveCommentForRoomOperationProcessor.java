@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.comments.hotel;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.comments.hotel.getcommentsforroom.GetCommentsForRoomListBFFOutput;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFOutput;
@@ -18,8 +19,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
@@ -33,6 +33,19 @@ public class LeaveCommentForRoomOperationProcessor extends BaseOperationProcesso
 
     @Override
     public Either<Errors, LeaveCommentForRoomBFFOutput> process(LeaveCommentForRoomBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start leaveCommentForRoom input: {}", input);
+
+                    LeaveCommentForRoomBFFOutput output = LeaveCommentForRoomBFFOutput.builder()
+                            .build();
+
+                    log.info("End leaveCommentForRoom output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

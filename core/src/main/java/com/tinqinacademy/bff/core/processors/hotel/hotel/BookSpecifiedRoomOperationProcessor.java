@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.hotel.hotel;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.hotel.basicinfo.BasicInfoForRoomBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.bookroom.BookSpecifiedRoomBFFOutput;
@@ -19,8 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Service
@@ -34,6 +34,19 @@ public class BookSpecifiedRoomOperationProcessor extends BaseOperationProcessor 
 
     @Override
     public Either<Errors, BookSpecifiedRoomBFFOutput> process(BookSpecifiedRoomBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start bookSpecifiedRoom input: {}", input);
+
+                    BookSpecifiedRoomBFFOutput output = BookSpecifiedRoomBFFOutput.builder()
+                            .build();
+
+                    log.info("End bookSpecifiedRoom output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

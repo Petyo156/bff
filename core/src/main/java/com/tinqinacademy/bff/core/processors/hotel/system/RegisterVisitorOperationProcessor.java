@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.hotel.system;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.system.deleteroom.DeleteRoomBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.system.registervisitor.RegisterVisitorBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.system.registervisitor.RegisterVisitorBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.system.registervisitor.RegisterVisitorBFFOutput;
@@ -21,8 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
@@ -36,6 +36,19 @@ public class RegisterVisitorOperationProcessor extends BaseOperationProcessor im
 
     @Override
     public Either<Errors, RegisterVisitorBFFOutput> process(RegisterVisitorBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start registerVisitor input: {}", input);
+
+                    RegisterVisitorBFFOutput output = RegisterVisitorBFFOutput.builder()
+                            .build();
+
+                    log.info("End registerVisitor output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

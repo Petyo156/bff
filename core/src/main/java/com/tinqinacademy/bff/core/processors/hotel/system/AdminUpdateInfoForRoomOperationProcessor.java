@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.hotel.system;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.system.adminreportvisitor.AdminReportVisitorBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom.AdminUpdateInfoForRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom.AdminUpdateInfoForRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom.AdminUpdateInfoForRoomBFFOutput;
@@ -22,8 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Service
@@ -37,6 +37,19 @@ public class AdminUpdateInfoForRoomOperationProcessor extends BaseOperationProce
 
     @Override
     public Either<Errors, AdminUpdateInfoForRoomBFFOutput> process(AdminUpdateInfoForRoomBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start adminUpdateInfoForRoom input: {}", input);
+
+                    AdminUpdateInfoForRoomBFFOutput output = AdminUpdateInfoForRoomBFFOutput.builder()
+                            .build();
+
+                    log.info("End adminUpdateInfoForRoom output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

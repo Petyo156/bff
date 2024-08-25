@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.hotel.hotel;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.hotel.checkroom.CheckRoomAvailabilityBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.unbookbookedroom.UnbookBookedRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.unbookbookedroom.UnbookBookedRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.unbookbookedroom.UnbookBookedRoomBFFOutput;
@@ -21,8 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
@@ -36,6 +36,19 @@ public class UnbookBookedRoomOperationProcessor extends BaseOperationProcessor i
 
     @Override
     public Either<Errors, UnbookBookedRoomBFFOutput> process(UnbookBookedRoomBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start unbookBookedRoom input: {}", input);
+
+                    UnbookBookedRoomBFFOutput output = UnbookBookedRoomBFFOutput.builder()
+                            .build();
+
+                    log.info("End unbookBookedRoom output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

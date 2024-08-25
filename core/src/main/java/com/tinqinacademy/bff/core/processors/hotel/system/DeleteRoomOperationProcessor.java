@@ -1,6 +1,7 @@
 package com.tinqinacademy.bff.core.processors.hotel.system;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.system.adminupdateinfoforroom.AdminUpdateInfoForRoomBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.system.deleteroom.DeleteRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.system.deleteroom.DeleteRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.system.deleteroom.DeleteRoomBFFOutput;
@@ -21,8 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
@@ -36,6 +36,19 @@ public class DeleteRoomOperationProcessor extends BaseOperationProcessor impleme
 
     @Override
     public Either<Errors, DeleteRoomBFFOutput> process(DeleteRoomBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start deleteRoom input: {}", input);
+
+                    DeleteRoomBFFOutput output = DeleteRoomBFFOutput.builder()
+                            .build();
+
+                    log.info("End deleteRoom output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }

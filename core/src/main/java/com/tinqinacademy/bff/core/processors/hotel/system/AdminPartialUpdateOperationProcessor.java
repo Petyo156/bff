@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatchException;
 import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import com.tinqinacademy.bff.api.exceptions.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.system.admincreateroom.AdminCreateRoomBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminpartialupdate.AdminPartialUpdateBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminpartialupdate.AdminPartialUpdateBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.system.adminpartialupdate.AdminPartialUpdateBFFOutput;
@@ -25,8 +26,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Optional;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Match;
+import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
 @Slf4j
@@ -40,6 +40,19 @@ public class AdminPartialUpdateOperationProcessor extends BaseOperationProcessor
 
     @Override
     public Either<Errors, AdminPartialUpdateBFFOutput> process(AdminPartialUpdateBFFInput input) {
-        return null;
+        return Try.of(() -> {
+                    log.info("Start adminPartialUpdate input: {}", input);
+
+                    AdminPartialUpdateBFFOutput output = AdminPartialUpdateBFFOutput.builder()
+                            .build();
+
+                    log.info("End adminPartialUpdate output: {}", output);
+                    return output;
+                })
+                .toEither()
+                .mapLeft(throwable -> Match(throwable).of(
+                        Case($(instanceOf(IllegalArgumentException.class)),
+                                errorMapper.handleError(throwable, HttpStatus.BAD_REQUEST))
+                ));
     }
 }
