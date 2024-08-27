@@ -44,8 +44,11 @@ public class UserEditOwnCommentOperationProcessor extends BaseOperationProcessor
         return Try.of(() -> {
                     log.info("Start userEditOwnComment input: {}", input);
 
-                    UserEditOwnCommentBFFOutput output = UserEditOwnCommentBFFOutput.builder()
+                    UserEditOwnCommentOutput userEditOwnCommentOutput = UserEditOwnCommentOutput.builder()
+                            .id(input.getCommentId())
                             .build();
+
+                    UserEditOwnCommentBFFOutput output = conversionService.convert(userEditOwnCommentOutput, UserEditOwnCommentBFFOutput.class);
 
                     log.info("End userEditOwnComment output: {}", output);
                     return output;

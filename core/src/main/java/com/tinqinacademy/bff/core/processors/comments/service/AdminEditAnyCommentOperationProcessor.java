@@ -7,6 +7,8 @@ import com.tinqinacademy.bff.api.operations.comments.system.admineditanycomment.
 import com.tinqinacademy.bff.api.operations.comments.system.admineditanycomment.AdminEditAnyCommentBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
+import com.tinqinacademy.comments.api.operations.system.admindeleteanycomment.AdminDeleteAnyCommentOutput;
+import com.tinqinacademy.comments.api.operations.system.admineditanycomment.AdminEditAnyCommentOutput;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.validation.Validator;
@@ -33,8 +35,11 @@ public class AdminEditAnyCommentOperationProcessor extends BaseOperationProcesso
         return Try.of(() -> {
                     log.info("Start adminEditAnyComment input: {}", input);
 
-                    AdminEditAnyCommentBFFOutput output = AdminEditAnyCommentBFFOutput.builder()
+                    AdminEditAnyCommentOutput adminEditAnyCommentOutput = AdminEditAnyCommentOutput.builder()
+                            .id(input.getCommentId())
                             .build();
+
+                    AdminEditAnyCommentBFFOutput output = conversionService.convert(adminEditAnyCommentOutput, AdminEditAnyCommentBFFOutput.class);
 
                     log.info("End adminEditAnyComment output: {}", output);
                     return output;
