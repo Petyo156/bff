@@ -6,6 +6,7 @@ import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.L
 import com.tinqinacademy.bff.api.operations.comments.hotel.leavecommentforroom.LeaveCommentForRoomBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
+import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomInput;
 import com.tinqinacademy.comments.api.operations.hotel.leavecommentforroom.LeaveCommentForRoomOutput;
 import com.tinqinacademy.comments.restexport.CommentClient;
 import com.tinqinacademy.hotel.restexport.HotelClient;
@@ -40,9 +41,13 @@ public class LeaveCommentForRoomOperationProcessor extends BaseOperationProcesso
         return Try.of(() -> {
                     log.info("Start leaveCommentForRoom input: {}", input);
 
-                    LeaveCommentForRoomOutput leaveCommentForRoomOutput = LeaveCommentForRoomOutput.builder()
-                            .id(input.getRoomId())
-                            .build();
+                    validateInput(input);
+
+                    hotelClient.basicInfoForRoom(input.getRoomId());
+
+                    LeaveCommentForRoomInput leaveCommentForRoomInput = conversionService.convert(input, LeaveCommentForRoomInput.class);
+
+                    LeaveCommentForRoomOutput leaveCommentForRoomOutput = commentClient.leaveCommentForRoom(leaveCommentForRoomInput, input.getRoomId());
 
                     LeaveCommentForRoomBFFOutput output = conversionService.convert(leaveCommentForRoomOutput, LeaveCommentForRoomBFFOutput.class);
 

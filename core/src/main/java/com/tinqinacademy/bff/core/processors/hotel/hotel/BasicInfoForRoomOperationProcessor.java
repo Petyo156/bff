@@ -1,14 +1,13 @@
 package com.tinqinacademy.bff.core.processors.hotel.hotel;
 
 import com.tinqinacademy.bff.api.exceptions.Errors;
-import com.tinqinacademy.bff.api.operations.comments.system.admineditanycomment.AdminEditAnyCommentBFFOutput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.basicinfo.BasicInfoForRoomBFFInput;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.basicinfo.BasicInfoForRoomBFFOperation;
 import com.tinqinacademy.bff.api.operations.hotel.hotel.basicinfo.BasicInfoForRoomBFFOutput;
 import com.tinqinacademy.bff.core.errorhandling.ErrorMapper;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
-import com.tinqinacademy.hotel.api.models.operations.hotel.basicinfo.BasicInfoForRoomOperation;
 import com.tinqinacademy.hotel.api.models.operations.hotel.basicinfo.BasicInfoForRoomOutput;
+import com.tinqinacademy.hotel.restexport.HotelClient;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.validation.Validator;
@@ -18,8 +17,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 
@@ -27,9 +24,12 @@ import static io.vavr.Predicates.instanceOf;
 @Service
 public class BasicInfoForRoomOperationProcessor extends BaseOperationProcessor implements BasicInfoForRoomBFFOperation {
 
+    private final HotelClient hotelClient;
+
     @Autowired
-    public BasicInfoForRoomOperationProcessor(ConversionService conversionService, ErrorMapper errorMapper, Validator validator) {
+    public BasicInfoForRoomOperationProcessor(ConversionService conversionService, ErrorMapper errorMapper, Validator validator, HotelClient hotelClient) {
         super(conversionService, errorMapper, validator);
+        this.hotelClient = hotelClient;
     }
 
     @Override
@@ -37,15 +37,11 @@ public class BasicInfoForRoomOperationProcessor extends BaseOperationProcessor i
         return Try.of(() -> {
                     log.info("Start basicInfoForRoom input: {}", input);
 
-//                    BasicInfoForRoomOutput basicInfoForRoomOutput = BasicInfoForRoomOutput.builder()
-//                            .roomId(UUID.fromString(input.getRoomId()))
-//                            .bathroomType()
-//                            .bedSize()
-//                            .datesOccupied()
-//                            .build();
+                    validateInput(input);
 
-                    BasicInfoForRoomBFFOutput output = BasicInfoForRoomBFFOutput.builder()
-                            .build();
+                    BasicInfoForRoomOutput requestOutput = hotelClient.basicInfoForRoom(input.getRoomId());
+
+                    BasicInfoForRoomBFFOutput output = conversionService.convert(requestOutput, BasicInfoForRoomBFFOutput.class);
 
                     log.info("End basicInfoForRoom output: {}", output);
                     return output;
